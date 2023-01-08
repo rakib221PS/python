@@ -1,0 +1,2 @@
+Python is python
+Everything is not python
