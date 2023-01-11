@@ -1,30 +1,26 @@
-# Python program to demonstrate
-# use of class method and static method.
-from datetime import date
+class Interval:
+
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+
+    def __repr__(self):
+        return f'Interval({self.a}, {self.b})'
+
+    def contains(self, x):
+        return self.a <= x <= self.b
 
 
-class Person:
-	def __init__(self, name, age):
-		self.name = name
-		self.age = age
+A = Interval(-20, 200)
+B = Interval(10, 10)
+C = Interval(30, 4)
 
-	# a class method to create a Person object by birth year.
-	@classmethod
-	def fromBirthYear(cls, name, year):
-		return cls(name, date.today().year - year)
-
-	# a static method to check if a Person is adult or not.
-	@staticmethod
-	def isAdult(age):
-		return age > 18
-
-
-person1 = Person('mayank', 21)
-person2 = Person.fromBirthYear('mayank', 1996)
-
-print(person1.age)
-print(person2.age)
-
-# print the result
-print(Person.isAdult(22))
-
+assert repr(A) == 'Interval(-20, 200)'
+assert A.contains(120)
+assert A.contains(200)
+assert A.contains(-20)
+assert not A.contains(201)
+assert not A.contains(-50)
+assert B.contains(10)
+assert not B.contains(11)
+assert not C.contains(10)
